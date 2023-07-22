@@ -6,27 +6,27 @@
     public class User
     {
         /// <summary>
-        /// Gest or sets the first name.
+        /// Gets or sets the first name.
         /// </summary>
         public string FirstName { get; set; }
 
         /// <summary>
-        /// Gest or sets the last name.
+        /// Gets or sets the last name.
         /// </summary>
         public string LastName { get; set; }
 
         /// <summary>
-        /// Gest or sets the Email address.
+        /// Gets or sets the Email address.
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// Gest or sets the enabled state.
+        /// Gets or sets the enabled state.
         /// </summary>
         public bool Enabled { get; set; }
 
         /// <summary>
-        /// Gest or sets the username.
+        /// Gets or sets the username.
         /// </summary>
         public string Username { get; set; }
     }
