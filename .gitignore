@@ -131,3 +131,7 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+
+# FileContentIndex
+.vs/UserManagement/FileContentIndex
+.vs\UserManagement\v17\.futdcache.v2
