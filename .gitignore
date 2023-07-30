@@ -135,5 +135,8 @@ _NCrunch*
 # FileContentIndex
 .vs/UserManagement
 .vs/UserManagement/FileContentIndex
-.vs\UserManagement\v17
-.vs\ProjectEvaluation\usermanagement.metadata.v5.2
+.vs/UserManagement/v17
+.vs/ProjectEvaluation
+*.2
+*.vsidx
+*.v2
