@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UserManagement.Model;
+using UserManagement.Services;
 
 namespace UserManagement.Controllers
 {
@@ -6,5 +8,30 @@ namespace UserManagement.Controllers
     [ApiController]
     public class KeycloakController : ControllerBase
     {
+        private readonly IKeycloakService _keycloakService;
+
+        public KeycloakController(IKeycloakService keycloakService)
+        {
+            _keycloakService = keycloakService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<string>> KeycloakLogin(KeycloakCredentials credentials)
+        {
+            return Ok(_keycloakService.KeycloakLogin(credentials));
+        }
+
+        /*[HttpPost]
+        public async Task<ActionResult<User>> CreateUsers(User user)
+        {
+            return Ok(_keycloakService.CreateUsers(user));
+        }*/
+
+        [HttpGet]
+        public async Task<ActionResult<List<User>>> GetUser()
+        {
+            return Ok(_keycloakService.GetUser());
+        }
+
     }
 }

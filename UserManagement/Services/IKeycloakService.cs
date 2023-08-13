@@ -1,10 +1,13 @@
 ﻿using UserManagement.Model;
+using UserManagement.Utility.KeycloakCredentials;
 
 namespace UserManagement.Services
 {
     public interface IKeycloakService
     {
-        void CreateUsers(User user);
+        string KeycloakLogin(KeycloakCredentials credentials);
+
+        //string CreateUsers(User user);
 
         List<User> GetUser();
     }

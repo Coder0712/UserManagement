@@ -1,7 +1,8 @@
-﻿using System.Net.Http.Headers;
-using System.Security.Principal;
-using System.Text;
-using UserManagement.Model;
+﻿using UserManagement.Model;
+using UserManagement.Utility.Messages;
+using Newtonsoft.Json;
+using UserManagement.Utility.Token;
+using UserManagement.Utility.KeycloakCredentials;
 
 namespace UserManagement.Services
 {
@@ -10,58 +11,55 @@ namespace UserManagement.Services
     /// </summary>
     public class KeycloakService : IKeycloakService
     {
-        public void CreateUsers(User user)
+        /// <summary>
+        /// Provides a logi for keycloak.
+        /// </summary>
+        /// <param name="credentials">The KeycloakCredentials for keycloak login.</param>
+        /// <returns>A string if the validation is successful.</returns>
+        public string KeycloakLogin(KeycloakCredentials credentials)
         {
-            HttpResponseMessage response = new HttpResponseMessage();
+            var validation = string.Empty;
 
-            var token = GetToken();
+            Credentials.Login(credentials.Username, credentials.Password);
 
-            using (var client = new HttpClient())
+            if(KeycloakToken.Token != null)
             {
-                var api = "http://localhost:8080/admin/realms/master/users";
-
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                var json = JsonConvert.SerializeObject(user);
-
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                response = client.PostAsync(api, content).Result;
+                validation = "Login successful.";
             }
-
-            if (response.Content.ReadAsStringAsync().Result == null)
-            {
-                throw new NullReferenceException();
-            }
-            else
-            {
-                return response.Content.ReadAsStringAsync().Result;
-            }
+            
+            return validation;
         }
+
+        /*public string CreateUsers(User user)
+        {
+            var postMessage = new HttpPostMessage();
+
+            var token = KeycloakToken.Token;
+
+            return postMessage.GetResultMessage(token, user);
+        }*/
 
         public List<User> GetUser()
         {
-            HttpResponseMessage response = new HttpResponseMessage();
+            List<User>? user = new List<User>();
 
-            var token = GetToken();
+            var getMessage = new HttpGetMessage();
 
-            using (var client = new HttpClient())
+            var token = KeycloakToken.Token;
+
+            var result = getMessage.GetResultMessage<string>(token, string.Empty);
+
+            if(result != null)
             {
-                var api = "http://localhost:8080/admin/realms/master/users";
-
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-
-                response = client.GetAsync(api).GetAwaiter().GetResult();
+                user = JsonConvert.DeserializeObject<List<User>>(result);
             }
 
-            if (response.Content.ReadAsStringAsync().Result == null)
+            if (user != null)
             {
-                throw new NullReferenceException();
+                return user;
             }
-            else
-            {
-                return JsonConvert.DeserializeObject<List<User>>(response.Content.ReadAsStringAsync().Result);
-            }
+
+            throw new Exception("Result is null");
         }
     }
 }
