@@ -30,14 +30,14 @@ namespace UserManagement.Services
             return validation;
         }
 
-        /*public string CreateUsers(User user)
+        public string CreateUsers(User user)
         {
             var postMessage = new HttpPostMessage();
 
             var token = KeycloakToken.Token;
 
             return postMessage.GetResultMessage(token, user);
-        }*/
+        }
 
         public List<User> GetUser()
         {

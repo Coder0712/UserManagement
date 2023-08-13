@@ -21,13 +21,13 @@ namespace UserManagement.Controllers
             return Ok(_keycloakService.KeycloakLogin(credentials));
         }
 
-        /*[HttpPost]
+        [HttpPost("CreateUser")]
         public async Task<ActionResult<User>> CreateUsers(User user)
         {
             return Ok(_keycloakService.CreateUsers(user));
-        }*/
+        }
 
-        [HttpGet]
+        [HttpGet("Users")]
         public async Task<ActionResult<List<User>>> GetUser()
         {
             return Ok(_keycloakService.GetUser());

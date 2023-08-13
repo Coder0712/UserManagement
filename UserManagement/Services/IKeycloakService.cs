@@ -7,7 +7,7 @@ namespace UserManagement.Services
     {
         string KeycloakLogin(KeycloakCredentials credentials);
 
-        //string CreateUsers(User user);
+        string CreateUsers(User user);
 
         List<User> GetUser();
     }
