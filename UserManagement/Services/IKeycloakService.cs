@@ -10,5 +10,9 @@ namespace UserManagement.Services
         string CreateUsers(User user);
 
         List<User> GetUser();
+
+        string CreateGroup(KcGroup kcGroup);
+
+        List<Serialization.Model.KcGroups> GetGroups();
     }
 }

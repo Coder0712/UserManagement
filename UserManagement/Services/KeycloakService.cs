@@ -61,5 +61,37 @@ namespace UserManagement.Services
 
             throw new Exception("Result is null");
         }
+
+        public string CreateGroup(KcGroup kcGroup)
+        {
+            var postMessage = new HttpPostMessageForGroup();
+
+            var token = KeycloakToken.Token;
+
+            return postMessage.GetResultMessage(token, kcGroup);
+        }
+
+        public List<Serialization.Model.KcGroups> GetGroups()
+        {
+            List<Serialization.Model.KcGroups>? groups = new List<Serialization.Model.KcGroups>();
+
+            var getMessage = new HttpGetMessagesForGroup();
+
+            var token = KeycloakToken.Token;
+
+            var result = getMessage.GetResultMessage<string>(token, string.Empty);
+
+            if (result != null)
+            {
+                groups = JsonConvert.DeserializeObject<List<Serialization.Model.KcGroups>>(result);
+            }
+
+            if (groups != null)
+            {
+                return groups;
+            }
+
+            throw new Exception("Result is null");
+        }
     }
 }

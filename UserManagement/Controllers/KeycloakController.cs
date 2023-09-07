@@ -33,5 +33,17 @@ namespace UserManagement.Controllers
             return Ok(_keycloakService.GetUser());
         }
 
+        [HttpPost("CreateGroup")]
+        public async Task<ActionResult<KcGroup>> CreateGroup(KcGroup kcGroup)
+        {
+            return Ok(_keycloakService.CreateGroup(kcGroup));
+        }
+
+        [HttpGet("Groups")]
+        public async Task<ActionResult<List<Serialization.Model.KcGroups>>> GetGroups()
+        {
+            return Ok(_keycloakService.GetGroups());
+        }
+
     }
 }
