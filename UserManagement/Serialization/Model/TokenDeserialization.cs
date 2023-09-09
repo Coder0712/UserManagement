@@ -1,5 +1,8 @@
 ﻿namespace UserManagement.Serialization.Model
 {
+    /// <summary>
+    /// Defines a model to read the token.
+    /// </summary>
     internal class TokenDeserialization
     {
         public string access_token { get; set; }

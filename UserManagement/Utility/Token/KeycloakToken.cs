@@ -4,8 +4,14 @@ using UserManagement.Utility.KeycloakCredentials;
 
 namespace UserManagement.Utility.Token
 {
+    /// <summary>
+    /// Defines a message to create a bearer token.
+    /// </summary>
     internal class KeycloakToken
     {
+        /// <summary>
+        /// Gets a token.
+        /// </summary>
         public static string Token
         {
             get
@@ -16,6 +22,11 @@ namespace UserManagement.Utility.Token
             }
         }
 
+        /// <summary>
+        /// Creates a bearer token.
+        /// </summary>
+        /// <returns>A message with the token.</returns>
+        /// <exception cref="Exception">Cant create a token.</exception>
         private static TokenDeserialization CreateToken()
         {
             HttpResponseMessage response = new HttpResponseMessage();

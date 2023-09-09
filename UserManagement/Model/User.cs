@@ -1,7 +1,7 @@
 ﻿namespace UserManagement.Model
 {
     /// <summary>
-    /// Defines a model for the user
+    /// Defines a model to create a user
     /// </summary>
     public class User
     {

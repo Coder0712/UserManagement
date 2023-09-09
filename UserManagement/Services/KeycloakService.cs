@@ -12,9 +12,9 @@ namespace UserManagement.Services
     public class KeycloakService : IKeycloakService
     {
         /// <summary>
-        /// Provides a logi for keycloak.
+        /// Provides a login for keycloak.
         /// </summary>
-        /// <param name="credentials">The KeycloakCredentials for keycloak login.</param>
+        /// <param name="credentials">The credentials for keycloak login.</param>
         /// <returns>A string if the validation is successful.</returns>
         public string KeycloakLogin(KeycloakCredentials credentials)
         {
@@ -30,6 +30,11 @@ namespace UserManagement.Services
             return validation;
         }
 
+        /// <summary>
+        /// Creates a user in keycloak.
+        /// </summary>
+        /// <param name="user">The user which should be added.</param>
+        /// <returns>A string with the result.</returns>
         public string CreateUsers(User user)
         {
             var postMessage = new HttpPostMessage();
@@ -39,6 +44,11 @@ namespace UserManagement.Services
             return postMessage.GetResultMessage("users", token, user);
         }
 
+        /// <summary>
+        /// Reads all users.
+        /// </summary>
+        /// <returns>A list with all users.</returns>
+        /// <exception cref="Exception">The result is null.</exception>
         public List<Serialization.Model.Users> GetUser()
         {
             List<Serialization.Model.Users>? user = new List<Serialization.Model.Users>();
@@ -62,6 +72,11 @@ namespace UserManagement.Services
             throw new Exception("Result is null");
         }
 
+        /// <summary>
+        /// Creates a group in keycloak.
+        /// </summary>
+        /// <param name="kcGroup">The group whoch should be added.</param>
+        /// <returns>A string with the resut.</returns>
         public string CreateGroup(KcGroup kcGroup)
         {
             var postMessage = new HttpPostMessage();
@@ -71,6 +86,11 @@ namespace UserManagement.Services
             return postMessage.GetResultMessage("groups", token, kcGroup);
         }
 
+        /// <summary>
+        /// Reads all groups.
+        /// </summary>
+        /// <returns>A list with all groups.</returns>
+        /// <exception cref="Exception">The result is null.</exception>
         public List<Serialization.Model.KcGroups> GetGroups()
         {
             List<Serialization.Model.KcGroups>? groups = new List<Serialization.Model.KcGroups>();
@@ -94,6 +114,12 @@ namespace UserManagement.Services
             throw new Exception("Result is null");
         }
 
+        /// <summary>
+        /// Adds a user to a group.
+        /// </summary>
+        /// <param name="userId">The guid of the user.</param>
+        /// <param name="groupId">The guid of the group.</param>
+        /// <returns>A string.</returns>
         public string AddUserToGroup(Guid userId, Guid groupId)
         {
             var token = KeycloakToken.Token;

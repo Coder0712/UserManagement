@@ -1,5 +1,8 @@
 ﻿namespace UserManagement.Model
 {
+    /// <summary>
+    /// Defines model to create a group
+    /// </summary>
     public class KcGroup
     {
         /// <summary>

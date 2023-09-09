@@ -1,5 +1,8 @@
 ﻿namespace UserManagement.Serialization.Model
 {
+    /// <summary>
+    /// Defines a model to read groups.
+    /// </summary>
     public class KcGroups
     {
 

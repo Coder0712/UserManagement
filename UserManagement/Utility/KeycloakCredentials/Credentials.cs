@@ -3,7 +3,7 @@
 namespace UserManagement.Utility.KeycloakCredentials
 {
     /// <summary>
-    /// Provides login
+    /// Provides a login
     /// </summary>
     public class Credentials
     {
