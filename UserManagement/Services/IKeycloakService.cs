@@ -1,5 +1,4 @@
 ﻿using UserManagement.Model;
-using UserManagement.Utility.KeycloakCredentials;
 
 namespace UserManagement.Services
 {
@@ -9,10 +8,12 @@ namespace UserManagement.Services
 
         string CreateUsers(User user);
 
-        List<User> GetUser();
+        List<Serialization.Model.Users> GetUser();
 
         string CreateGroup(KcGroup kcGroup);
 
         List<Serialization.Model.KcGroups> GetGroups();
+
+        string AddUserToGroup(Guid userId, Guid groupId);
     }
 }

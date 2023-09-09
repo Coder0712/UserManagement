@@ -45,5 +45,10 @@ namespace UserManagement.Controllers
             return Ok(_keycloakService.GetGroups());
         }
 
+        [HttpPut("AddUserToGroup")]
+        public async Task<ActionResult<string>> AddUserToGroup(Guid userId, Guid groupId)
+        {
+            return Ok(_keycloakService.AddUserToGroup(userId, groupId));
+        }
     }
 }

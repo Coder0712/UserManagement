@@ -10,13 +10,13 @@ namespace UserManagement.Utility.Messages
     public class HttpPostMessage : IHttpMessage
     {
         /// <inheritdoc />
-        public string GetResultMessage<T>(string? token, T content)
+        public string GetResultMessage<T>(string endpoints, string? token, T content)
         {
             HttpResponseMessage response = new HttpResponseMessage();
 
             using (var client = new HttpClient())
             {
-                var api = "http://localhost:8080/admin/realms/master/users";
+                var api = "http://localhost:8080/admin/realms/master/" + endpoints;
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 

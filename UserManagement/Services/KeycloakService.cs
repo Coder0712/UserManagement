@@ -36,22 +36,22 @@ namespace UserManagement.Services
 
             var token = KeycloakToken.Token;
 
-            return postMessage.GetResultMessage(token, user);
+            return postMessage.GetResultMessage("users", token, user);
         }
 
-        public List<User> GetUser()
+        public List<Serialization.Model.Users> GetUser()
         {
-            List<User>? user = new List<User>();
+            List<Serialization.Model.Users>? user = new List<Serialization.Model.Users>();
 
             var getMessage = new HttpGetMessage();
 
             var token = KeycloakToken.Token;
 
-            var result = getMessage.GetResultMessage<string>(token, string.Empty);
+            var result = getMessage.GetResultMessage<string>("users", token, string.Empty);
 
             if(result != null)
             {
-                user = JsonConvert.DeserializeObject<List<User>>(result);
+                user = JsonConvert.DeserializeObject<List<Serialization.Model.Users>>(result);
             }
 
             if (user != null)
@@ -64,22 +64,22 @@ namespace UserManagement.Services
 
         public string CreateGroup(KcGroup kcGroup)
         {
-            var postMessage = new HttpPostMessageForGroup();
+            var postMessage = new HttpPostMessage();
 
             var token = KeycloakToken.Token;
 
-            return postMessage.GetResultMessage(token, kcGroup);
+            return postMessage.GetResultMessage("groups", token, kcGroup);
         }
 
         public List<Serialization.Model.KcGroups> GetGroups()
         {
             List<Serialization.Model.KcGroups>? groups = new List<Serialization.Model.KcGroups>();
 
-            var getMessage = new HttpGetMessagesForGroup();
+            var getMessage = new HttpGetMessage();
 
             var token = KeycloakToken.Token;
 
-            var result = getMessage.GetResultMessage<string>(token, string.Empty);
+            var result = getMessage.GetResultMessage<string>("groups", token, string.Empty);
 
             if (result != null)
             {
@@ -92,6 +92,17 @@ namespace UserManagement.Services
             }
 
             throw new Exception("Result is null");
+        }
+
+        public string AddUserToGroup(Guid userId, Guid groupId)
+        {
+            var token = KeycloakToken.Token;
+
+            var putMessage = new HttpPutMessage();
+
+            _ = putMessage.GetResultMessage<string>("users/" + userId.ToString() + "/groups/" + groupId.ToString(), token, null);
+
+            return "User added to group.";
         }
     }
 }
