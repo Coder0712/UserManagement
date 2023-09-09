@@ -1,10 +1,15 @@
-﻿namespace UserManagement.Model
+﻿namespace UserManagement.Serialization.Model
 {
     /// <summary>
-    /// Defines a model to create a user
+    /// Defines a model to read user.
     /// </summary>
-    public class User
+    public class Users
     {
+        /// <summary>
+        /// Gets or sets the gui of the user
+        /// </summary>
+        public Guid id { get; set; }
+
         /// <summary>
         /// Gets or sets the first name.
         /// </summary>
@@ -29,5 +34,6 @@
         /// Gets or sets the username.
         /// </summary>
         public string username { get; set; }
+
     }
 }
